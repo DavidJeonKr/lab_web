@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>HTML Table</title>
+		<style>
+		table, th, td{
+			border: 1px solid gray;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>HTML Table Tag</h1>
+		
+		<!-- 
+		  table: 테이블의 시작, 끝 
+		  caption: 테이블 이름
+		  thead: table header(헤더)
+		  tbody: htable body(본문)
+		  tfoot: table footer(푸터, 꼬리끌)
+		  tr: table row(행)
+		  td: table data(셀)
+		  th: table cell header. 행 (row) 또는 열(column)의 이름.
+		 -->
+
+		<table>
+			<caption>시험점수</caption>
+			<thead>
+				<tr>
+					<th>이름</th>
+					<th>Java</th>
+					<th>SQL</th>
+					<th>HTML</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>오쌤</td>
+					<td>100</td>
+					<td>95</td>
+					<td>80</td>
+				</tr>
+				<tr>
+					<td>홍길동</td>
+					<td>50</td>
+					<td>50</td>
+					<td>50</td>
+				</tr>				
+				<tr>
+					<td>김길동</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				</tr>				
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>합계</th>
+					<td>150</td>
+					<td>145</td>
+					<td>130</td>
+				</tr>
+			</tfoot>
+			
+		</table>		
+		
+		<hr/>
+		<!-- 회원 정보 -->
+		<table>
+			<caption>회원정보</caption>
+			<thead>
+				<tr>
+					<th>아이디</th>
+					<th>비밀번호</th>
+					<th>이메일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>첫번쨰 아이디</td>
+					<td>123123123</td>
+					<td>123123@naver.com</td>
+				</tr>
+				<tr>
+					<td>Guest</td>
+					<td>osdjsodj</td>
+					<td>dfijdf@naver.com</td>
+				</tr>				
+				<tr>
+					<td>test</td>
+					<td>213123</td>
+					<td>djdk@gmail.com</td>
+				</tr>				
+			</tbody>
+		</table>		
+		
+		<hr/>		
+		
+		<table>
+			<thead>
+				<tr>
+					<th>이름 </th>
+					<th colspan = "3">전화번호</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>오쌤</td>
+					<td rowspan = "2">010-0000-0000</td>
+					<td>02-0000-0000</td>
+					<td>02-1234-5662</td>
+				</tr>
+			</tbody>		
+		</table>
+		
+		<hr/>
+		<table>
+			<tbody>
+				<tr>
+					<th>이름</th>
+					<td>오쌤</td>
+				</tr>
+				<tr>
+					<th rowspan="2">전화번호</th>
+					<td>010-20250250</td>
+				</tr>
+				<tr>
+					<td>010-2222--2222</td>
+				</tr>			
+			</tbody>
+		</table>		
+		
+	</body>
+</html>

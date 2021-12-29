@@ -1,0 +1,9 @@
+@charset "UTF-8"; /* CSS 파일의 encoding 타입을 선언 */
+p {
+	border: 1px solid red;
+	margin: 32px;
+	padding: 32px;
+	color: white;
+	background-color: lime;
+}
+

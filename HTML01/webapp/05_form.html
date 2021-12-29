@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HTML Form</title>
+    </head>
+    <body>
+        <h1>HTML Form Tag</h1>
+        <!--  
+        	브라우저(클라이언트)에서 사용자의 입력을 받아서, 입력 내용(데이터)를 서버로 전송하는 방법:
+        	1. <form> 태그 안에서 입력 요소(input element)들을 작성
+        	2. <form> 태그 안에 "submit" 버튼을 클릭하면 입력 요소들에 입력된 내용들이 서버로 전송됨.
+        	
+        	<form> 태그의 속성(attribute):
+        	1. action: 사용자 입력 데이터를 처리할 서버의 주소(html, jsp, php, ...)
+        	2. method: 사용자 입력 데이터를 서버로 전송하는 방식
+        	  (1) get: 서버로 전송하는 데이터를 URL 주소의 질의 문자열(query string)에 포함시켜서 전송하는 방식.
+        	      method 속성값을 지정하지 않으면 기본 전송 방식은 get 방식.
+        	      서버로 보내는 데이터의 크기 제한이 있음. 보안에 취약.
+        	  (2) post: 서버로 전송하는 데이터들을 HTTP 패킷에 포함시켜서 전송하는 방식.
+        	      사용자 입력 데이터들이 URL에 노출되지 않음. 전송 데이터 크기 제한이 없음.
+        	
+        	<input> 태그의 속성(attribute):
+        	  - type: 입력 타입. text, password, submit, ...
+        	  - name: 서버로 전송할 데이터의 변수 이름.
+        	  - value: input 요소에 입력된 값.
+        	  - placeholder: 입력할 정보에 대한 힌트.
+        	  - required: 필수 입력 항목 여부를 설정.
+        	  - autofocus: HTML 페이지가 로딩될 때 포커스를 줄 항목에 설정.
+        	  - id: HTML element(요소)를 찾기 위한 아이디를 설정.
+        -->
+        
+        <h2>GET 방식 전송</h2>
+        <form action="https://search.daum.net/search" method="get">
+        	<input type="text" name="q" />
+        	<input type="submit" value="검색" />
+        </form>
+        
+        <h2>POST 방식 전송</h2>
+        <form action="result.html" method="post">
+        	<input type="text" placeholder="아이디" name="userid" />
+        	<input type="password" placeholder="비밀번호" name="pwd" />
+        	<input type="submit" value="로그인" />
+        </form>
+        
+        <h2>여러가지 input type</h2>
+        <form action="result.html">  <!-- method 속성의 기본값은 get -->
+        	<input type="text" name="userid" placeholder="아이디" autofocus required />
+        	<br>
+        	<input type="password" name="pwd" placeholder="비밀번호" required />
+        	<br>
+        	<input type="email" name="email" placeholder="이메일" />
+        	<br>
+        	<input type="number" name="age" placeholder="나이" />
+        	<br>
+        	<input type="tel" name="phone" placeholder="전화번호" />
+        	<br>
+        	<input type="date" name="birthday" placeholder="생일" />
+        	<br>
+        	
+        	<!-- 라디오 버튼 -->
+        	<input type="radio" name="mailAccept" value="T" id="rb1" />
+        	<label for="rb1">메일 수신 동의</label>
+        	<input type="radio" name="mailAccept" value="F" id="rb2" />
+        	<label for="rb2">메일 수신 거부</label>
+        	<br>
+        	
+        	<!-- 체크 박스 -->
+        	<input type="checkbox" name="hobby" value="1" id="chbx1" />
+        	<label for="chbx1">영화</label>
+        	<input type="checkbox" name="hobby" value="2" id="chbx2" />
+        	<label for="chbx2">음악</label>
+        	<input type="checkbox" name="hobby" value="3" id="chbx3" />
+        	<label for="chbx3">코딩</label>
+        	<br>
+        	
+        	<!-- 목록 상자(drop-down list), 스피너(spinner) -->
+        	<select name="mailDomain">
+        		<option value="naver.com">네이버</option>
+        		<option value="kakao.com">카카오</option>
+        		<option value="gmail.com">지메일</option>
+        	</select>
+        	<br>
+        	
+        	<!-- data list -->
+        	<input type="text" name="mailDomain2" list="domainList" />
+        	<datalist id="domainList">
+        		<option value="naver">네이버</option>
+        		<option value="kakao">카카오</option>
+        		<option value="gmail">지메일</option>
+        	</datalist>
+        	<br>
+        	
+        	<!-- 파일 선택 -->
+        	<input type="file" name="selectedFile" />
+        	<br>
+        	
+        	<!-- 여러줄 입력 상자(textarea) -->
+        	<textarea name="memo" rows="5" cols="50"></textarea>
+        	<br>
+        	
+        	<input type="submit" value="전송" />  <!-- action 속성에 설정된 서버로 데이터를 전송 -->
+        	<input type="reset" value="입력 취소" />  <!-- 모든 input에 입력된 값들을 지움 -->
+        </form>
+        
+    </body>
+</html>

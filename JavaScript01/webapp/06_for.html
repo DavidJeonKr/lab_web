@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <style>
+        div {
+            background: skyblue;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>반복문과 break</h1>
+    <div id="result"></div>
+
+    <script>
+        var result = document.getElementById('result');
+        var text = '';
+        for (var dan = 1; dan < 10; dan++) {
+             for(var n = 1; n<10; n++){
+                text += `${dan} x ${n} = ${dan*n} <br/> `
+             }
+             text += '<hr>';
+        }
+        result.innerHTML = text;
+
+
+
+    </script>
+
+
+
+</body>
+</html>

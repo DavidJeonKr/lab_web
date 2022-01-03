@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Function</title>
+</head>
+<body>
+    <h1>JavaScript Function(함수)</h1>
+    <div id="result"></div>
+
+
+    <script>
+        /* JavaScript에서 함수(function)를 선언(정의)하는 방법:
+           function functionName(parameter, ...) {
+        	   // 함수에서 실행할 코드들
+           }
+        
+           파라미터(parameter): 함수를 호출(invoke, call)하는 곳에서 전달하는 값(argument)을 저장하기 위한 지역 변수.
+           함수의 파라미터를 선언할 때는 var 키워드를 사용하지 않음!
+           함수를 선언할 때 리턴 타입을 명시하지 않음!
+        */
+       var result = document.getElementById('result');
+
+       //함수 선언(정의)
+       function add(x,y) {
+           // 전역 변수는 함수 내부에서 사용 가능
+           result.innerHTML += 'add함수 내부: x = ' + x + '<br>';
+           result.innerHTML += 'add함수 내부: y = ' + y + '<br>';
+           return x+y;
+       }
+
+       // result.innerHTML += '함수 바깥: x=  ' + x + '<br>';
+       // -> 에러발생: 파라미터는 지역 변수. 지역 변수는 함수 내부에서만 사용 가능
+
+
+       var addResult = add(2,4);
+       result.innerHTML += 'add 함수 호출 결과 = ' + add(2,4) + '<br/>';
+       
+       result.innerHTML += '<br>';
+       
+       addResult = add('hello', 'javaScript');
+       result.innerHTML += 'add 함수 호출 결과 =' + addResult + '<br/>';
+       // -> 자바스크립트 함수는 전달받는 argumnet들의 타입을 검사하지 않음.
+
+       result.innerHTML += '<br>';
+
+       addResult = add(100);
+       result.innerHTML += 'add 함수 호출 결과 ' + addResult + '<br>';
+
+       result.innerHTML += '<br>';
+
+       //함수 선언부의 파라미터 개수보다 많은 수의 arguement를 전달해도 에러가 발생하지 않음
+       addResult = add(1,2,3,4,5);
+       result.innerHTML += 'add 함수 호출 결과 ' + addResult + '<br>';
+
+       result.innerHTML += '<br>';
+
+       // 자바스크립트의 모든 함수는 arguments라는 이름의 프로퍼티(property)를 갖음
+       // argumnets: 함수를 호출하는 곳에서 전달하는 모든 값들을 저장하는 배열
+       function addAll() {
+           var sum = 0;
+           for(var i = 0; i < arguments.length; i++){
+        //    result.innerHTML += 'argumnets = ' + arguments[i] + ',';
+           sum += arguments[i];
+        }
+        return sum;
+       }
+       addResult = addAll(1,2,3,4,10);
+       result.innerHTML += 'addAll 함수 호출 결과 ' + addResult + '<br>';
+    </script>
+</body>
+</html>

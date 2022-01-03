@@ -1,32 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript</title>
-    <style>
-        div {
-            border: 1px solid gray;
-
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript</title>
+        <style>
+        table, th, td {
+        	border: 1px solid gray;
+        	border-collapse: collapse;
         }
-
-    </style>
-</head>
-<body>
-    <h1>JavaScript for 구문</h1>
-    <button onclick="makeHeadings()">heading 만들기</button>
-    <div id="result">결과 출력</div>
-
-
-    <script>
-        var result = document.getElementById('result');
+        </style>
+    </head>
+    <body>
+        <h1>JavaScript for 구문</h1>
+        <button onclick="makeHeadings()">Heading 만들기</button>
+        <div id="result"></div>
+        
+        <h1>for 구문 연습</h1>
+        <button onclick="makeTableRows()">테이블 채우기</button>
+        <table>
+        	<caption>자유 게시판</caption>
+        	<thead>
+        		<tr>
+        			<th>글 번호</th>
+        			<th>글 제목</th>
+        			<th>작성자</th>
+        		</tr>
+        	</thead>
+        	<tbody id="board_tbl_body">
+        	</tbody>
+        </table>
+        
+        <h1>while 구문 연습</h1>
+        <button onclick="makeHeadings2()">Heading 만들기 2</button>
+        <button onclick="makeHeadings3()">Heading 만들기 3</button>
+        <div id="result2"></div>
+        
+        <script>
         function makeHeadings() {
-
+        	var result = document.getElementById('result');
+        	for (var i = 1; i <= 6; i++) {
+        		//result.innerHTML += '<h' + i + '>' + '제목 ' + i + '</h' + i + '>';
+        		result.innerHTML += `<h${i}> 제목 ${i}</h${i}>`;
+        	}
         }
-
-
-
-    </script>
-</body>
+        
+        function makeTableRows() {
+        	var tblBody = document.getElementById('board_tbl_body');
+        	for (var i = 10; i >= 1; i--) {
+        		tblBody.innerHTML += '<tr>'
+        							+ '<td>' + i + '</td>'
+        							+ '<td>' + '제목 ' + i + '</td>'
+        							+ '<td>' + '작성자 ' + i + '</td>'
+        							+ '</tr>';
+        	}
+        }
+        
+        function makeHeadings2() {
+        	var result2 = document.getElementById('result2');
+        	var i = 1;
+        	while (i <= 6) {
+        		result2.innerHTML += `<h${i}> 제목 ${i} </h${i}>`;
+        		i++;
+        	}
+        }
+        
+        function makeHeadings3() {
+        	var result2 = document.getElementById('result2');
+        	var i = 6;
+        	do {
+        		result2.innerHTML += `<h${i}> 제목 ${i} </h${i}>`;
+        		i--;
+        	} while (i > 0);
+        }
+        </script>
+    </body>
 </html>

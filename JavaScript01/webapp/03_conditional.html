@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <style>
+    #result {
+        border: 1px solid gray;
+        margin: 8px;
+        padding: 8px;
+    }
+    </style>
+</head>
+<body>
+    <h1>JavaScript</h1>
+    <input type="number" id="number_input" placeholder="정수 입력"/>
+    <button onclick="checkEvenOrOdd()">확인</button>
+    <button onclick="checkEvenOrOdd2()">확인 2</button>
+    <button onclick="checkEvenOrOdd3()">삼항 연산자</button>
+    <div id = "result"></div>
+
+    <script>
+        // input 요소를 찾음
+        var numberInput = document.getElementById('number_input');
+        //div 요소를 찾음
+        var result = document.getElementById('result');
+
+        function checkEvenOrOdd() {
+            console.log(numberInput.value); 
+            if (numberInput.value %2 ==0) {
+                //짝수인 경우
+                result.innerHTML = numberInput.value + ': ' + '짝수';
+            } else {
+                //홀수인 경우
+                result.innerHTML = numberInput.value + ': ' + '홀수';
+            }
+
+            //input에 입력된 값을 지움
+            numberInput.value = '';
+        }
+
+        function checkEvenOrOdd2() {
+            // JavaScript에서 참(true)/거짓(false);
+            // 1. 숫자인 경우 0은 false, 0 이외의 숫자들은 true 취급.
+            // 2. 문자열인 경우 빈 문자열('')은 false, 1글자 이상인 문자열은 true 취급.
+            // 3. 객체인 경우 null이면 false, null이 아니면(참조값이 있는 경우) true 취급.
+            var number = numberInput.value;
+            if(number % 2) { //number를 2로 나눈 나머지가 있으면(나머지 ==  1)
+                result.innerHTML = number + ': ' + '홀수';
+            } else { // number를 2로 나눈 나머지가 없으면(나머지 == 0)
+                result.innerHTML = number + ': ' + '짝수';
+            }
+            numberInput.value = '';
+        }
+
+        function checkEvenOrOdd3() {
+            var number = numberInput.value;
+            //삼항 연산자: (조건식) ? (값1) : (값2)
+            var message = (number % 2) ? 'odd' : 'even';
+            result.innerHTML = number + ': ' + message;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <style>
+        #result {
+            border: 1px solid gray;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>JavaScript switch 구문</h1>
+    <!-- 목록 상자(drop-down list) -->
+    <select id="weekday">
+        <option value="mon">월요일</option>
+        <option value="tue">화요일</option>
+        <option value="wen">수요일</option>
+        <option value="thu">목요일</option>
+        <option value="fri">금요일</option>
+        <option value="sat">토요일</option>
+        <option value="sun">일요일</option>
+    </select>
+
+    <button onclick="check()">확인</button>
+    <div id="result">결과 출력</div>
+
+    <script>
+        var select = document.getElementById('weekday');
+        var result = document.getElementById('result');
+        function check() {
+            var day = select.value;
+            switch (day) {
+                case 'mon':
+                    result.innerHTML = '월요일은 너무 싫어요';
+                    break;
+                case 'tue':
+                case 'wen':
+                case 'thu':
+                    result.innerHTML = '일주일이 참 힘들어요...';
+                    break;
+                case 'fri':
+                    result.innerHTML = '하루만 견디면 주말!이다!';
+                case 'sat':
+                case 'sun':
+                    result.innerHTML = '즐거운 주말 끝!!';
+                    break; 
+            }
+        
+            // console.log(select.value);
+            
+        }
+
+
+    </script>
+</body>
+</html>

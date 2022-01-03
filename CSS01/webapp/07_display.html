@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS Display</title>
+        
+        <style>
+        /* display 속성(property):
+            1. block: <div>, <p>, <section>, <article>, <h1>, <ul>, <li>, ...
+               - 항상 새 줄(new line)에서 시작.
+               - width, height를 변경할 수 있음.
+               - margin, padding을 변경할 수 있음.
+            2. inline: <span>, <strong>, <em>, <a>, ...
+               - 같은 줄에서 시작.
+               - width, height를 변경할 수 없음!
+               - margin, padding을 변경할 수 있음.
+            3. inline-block: inline 속성 + block 속성
+               - 같은 줄에서 시작(inline 속성)!
+               - width, height, padding, margin 변경 가능(block 속성)
+            4. none: 화면에 표시하지 않음. -> 요소가 차지하는 영역이 없음.
+        */
+        
+        div, span {
+        	border: 1px solid black;
+        }
+        
+        div {
+        	width: 200px;
+        	height: 80px;
+        	margin: 32px;
+        	padding: 16px;
+        }
+        
+        span {
+        /* inline 요소는 width, height 설정값이 적용되지 않음! */
+        	width: 100px;
+        	height: 80px;
+        	padding: 8px;
+        }
+        
+        .div_inline {
+        	display: inline;
+        	/* 원래 block이었던 것을 inline 타입으로 변경하면 widht, height 속성이 적용되지 않음! */
+        }
+        
+        .span_block {
+        	display: block;
+        }
+        
+        #h2_none {
+        	display: none;
+        }
+        
+        #h2_hidden {
+        	visibility: hidden;
+        }
+        </style>
+        
+    </head>
+    <body>
+        <h1>CSS display</h1>
+    
+    	<h2 id="h2_none">display:none heading</h2>
+    	<h2 id="h2_hidden">visibility:hidden heading</h2>
+    
+    	<hr>
+        
+        <div>
+        여기는 <span>divsion</span>입니다.
+        </div>
+        
+        <hr/>
+        
+        <div class="div_inline">Division 2</div>
+        <div class="div_inline">Division 3</div>
+        
+        <span class="span_block">Span 2</span>
+        <span class="span_block">Span 3</span>
+        
+    </body>
+</html>

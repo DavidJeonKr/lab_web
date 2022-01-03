@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>CSS Position</title>
+		
+		<style>
+		div {
+			border: 1px solid gray;
+			position: relative;
+			width: 200px;
+			height: 200px;
+			
+		}
+		
+		.box2 {
+			background-color: rgba(255,0,0,0.2);
+			position: fixed;
+			left: 32px;
+			top: 32px;
+		}
+		
+		.box3 {
+			background-color: rgba(0,255,0,0.2);
+			position: absolute;
+			left: 32px;
+			top: 32px;
+		}
+		
+		
+		</style>
+		
+	</head>
+	<body>
+		<h1>CSS position: static</h1>
+		
+		<div>
+		<div class="box1">Static position</div>
+		<div class="box2">Fixed position</div>
+		<div class="box3">Absolute position</div>
+		</div>
+		
+	</body>
+</html>

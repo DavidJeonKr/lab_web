@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS Link</title>
+        
+        <style>
+        #link_btn {
+        	text-decoration: none; /* 링크를 표시하는 밑줄 제거 */
+        	color: white; /* 글자색 */
+        	background-color: pink; /* 바탕색 */
+        	padding: 8px; /* 안쪽 여백 */
+        	border-radius: 4px; /* 테두리선 모서리의 반지름(얼마나 둥글게 만들 것인 지) */
+        }
+        #link_btn:hover {
+        	background-color: crimson;
+        }
+        
+        /* pseudo selector(가상 선택자): 이벤트 혹은 특정 조건을 만족하는 요소를 찾을 때 사용.
+           HTML요소:이벤트(조건)
+           pseudo selector 이벤트(조건)
+           (1) visited: 방문했던 사이트
+           (2) link: 방문하지 않았던 사이트
+           (3) hover: 마우스가 요소 위에 있을 때
+           (4) active: 마우스를 클릭하고 있을 때
+           (5) nth-child(): n번째 자식 요소
+           ...
+        */
+        
+        #link {
+        	color: black; /* 글자색 */
+        	text-decoration: none; /* 링크 밑줄 제거 */
+        }
+        #link:hover {
+        	color: blue;
+        	text-decoration: underline;
+        }
+        #link:active {
+        	color: red;
+        }
+        </style>
+        
+    </head>
+    <body>
+        <h1>CSS Link</h1>
+        <a href="https://www.daum.net/" id="link_btn">Daum</a>
+        <br>
+        
+        <h1>Pseudo selector</h1>
+        <a id="link" href="https://www.naver.com/">Naver</a>
+        <br>
+        
+    </body>
+</html>

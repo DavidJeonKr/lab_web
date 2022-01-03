@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS Position</title>
+        
+        <style>
+        /* CSS position: HTML element들의 위치(좌표). left, top, right, bottom을 설정.
+           1. static(정적 배치): HTML element들이 원래 배치되는 방식. 기본값.
+              left, top, right, bottom 설정이 적용되지 않음!
+           2. relative(상대 배치): HTML element의 "static 위치에서 상대적"으로 배치하는 방식.
+           3. fixed(고정 배치): viewport(브라우저의 좌상단)를 기준으로 배치하는 방식.
+                           화면 스크롤과 상관없이 항상 일정한 위치에 배치됨.
+           4. absolute(절대 배치): "가장 가까운 relative 부모 요소에서 상대적"으로 배치하는 방식.
+        */
+        div {
+        	border: 1px solid gray;
+        	position: relative;
+        	left: 32px;
+        	top: 32px;
+        }
+        </style>
+        
+    </head>
+    <body>
+        <h1>CSS Position</h1>
+        
+        <div>Division 1</div>
+        <div>Division 2</div>
+        
+    </body>
+</html>

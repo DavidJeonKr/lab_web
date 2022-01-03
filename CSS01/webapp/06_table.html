@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS Table</title>
+        
+        <style>
+        #member_tbl, #member_tbl th, #member_tbl td {
+        	border: 1px solid gray;
+        	border-collapse: collapse;
+        }
+        #member_tbl th, #member_tbl td {
+        	padding: 8px;
+        }
+        
+        #board_tbl {
+        	border-top: 1px solid gray;
+        	border-collapse: collapse;
+        	width: 100%; /* 브라우저의 가로 길이를 모두 사용 */
+        }
+        #board_tbl th, #board_tbl td {
+        	border-bottom: 1px solid gray;
+        	padding: 8px;
+        }
+        #board_tbl th {
+        	background-color: green;
+        	color: white;
+        }
+        
+        /* board_tbl의 tbody가 가지고 있는 tr들 중에서 짝수번째 요소들 */
+        #board_tbl > tbody > tr:nth-child(even) {
+        	background-color: lightgray;
+        }
+        /* board_tbl의 tbody가 가지고 있는 tr 위에 마우스가 올라갔을 때 */
+        #board_tbl > tbody > tr:hover {
+        	background-color: darkgray;
+        }
+        </style>
+        
+    </head>
+    <body>
+        <h1>CSS Table</h1>
+        <table id="member_tbl">
+        	<caption>회원 정보</caption>
+        	<thead>
+        		<tr>
+        			<th>아이디</th>
+        			<th>비밀번호</th>
+        			<th>이메일</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr>
+        			<td>admin</td>
+        			<td>admin1234</td>
+        			<td>admin@itwill.co.kr</td>
+        		</tr>
+        		<tr>
+        			<td>guest</td>
+        			<td>guest</td>
+        			<td>-</td>
+        		</tr>
+        		<tr>
+        			<td>test</td>
+        			<td>test</td>
+        			<td>test@test.com</td>
+        		</tr>
+        	</tbody>
+        </table>
+        
+        <hr>
+        
+        <table id="board_tbl">
+        	<caption>자유 게시판</caption>
+        	<thead>
+        		<tr>
+        			<th>글 번호</th>
+        			<th>글 제목</th>
+        			<th>작성자</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr>
+        			<td>1</td>
+        			<td>안녕하세요</td>
+        			<td>admin</td>
+        		</tr>
+        		<tr>
+        			<td>2</td>
+        			<td>Hello</td>
+        			<td>guest</td>
+        		</tr>
+        		<tr>
+        			<td>3</td>
+        			<td>테스트</td>
+        			<td>test</td>
+        		</tr>
+        		<tr>
+        			<td>4</td>
+        			<td>관리자입니다.</td>
+        			<td>admin</td>
+        		</tr>
+        		<tr>
+        			<td>5</td>
+        			<td>자유 게시판 테스트...</td>
+        			<td>test</td>
+        		</tr>
+        		<tr>
+        			<td>6</td>
+        			<td>정회원만 읽기 가능합니다.</td>
+        			<td>admin</td>
+        		</tr>
+        	</tbody>
+        </table>
+        
+    </body>
+</html>

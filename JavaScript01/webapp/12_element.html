@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript</title>
+        <style>
+        div {
+        	border: 1px solid gray;
+        	margin: 8px;
+        	padding: 8px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>HTML element 찾기</h1>
+        <div id="d1" class="c1">Division 1(id=d1, class=c1)</div>
+        <div id="d2" class="c1">Division 2(id=d2, class=c1)</div>
+        <div id="d3" class="c2">Division 3(id=d3, class=c2)</div>
+        <div id="d4" class="c2">Division 4(id=d4, class=c2)</div>
+        
+        <button id="btn_id">id로 찾기</button>
+        <button id="btn_class">class 이름으로 찾기</button>
+        <button id="btn_tag">tag 이름으로 찾기</button>
+        <br>
+        <button id="btn_sel">querySelector</button>
+        <button id="btn_sel_all">querySelectorAll</button>
+        
+        <script>
+        /* HTML 문서(document)에서 HTML 요소(element)들을 찾는 방법:
+        	(1) id로 찾기: document.getElementById('id')
+        	만약 같은 아이디를 갖는 요소가 여러개 있다면, 문서에서 가장 먼저 찾는 요소 하나만 리턴.
+        	(2) class 이름으로 찾기: document.getElementsByClassName('class_name')
+        	(3) tag 이름으로 찾기 document.getElementsByTagName('tag_name')
+        	클래스 이름 또는 태그 이름으로 요소를 찾으면, "요소들의 배열"을 리턴.
+        */
+        
+        var btnId = document.getElementById('btn_id');
+        // btnId에 이벤트 리스너 등록 - 아이디가 d1인 요소의 바탕색을 변경.
+        btnId.addEventListener('click', function () {
+        	var d1 = document.getElementById('d1'); // id가 d1인 요소를 찾음
+        	d1.style.backgroundColor = 'lavender'; // 바탕색 변경
+        });
+        
+        // btn_class 아이디를 버튼을 찾고
+        var btnClass = document.getElementById('btn_class');
+        // 버튼에 이벤트 리스너를 등록 - 클래스 이름이 c2인 요소들의 바탕색을 변경
+        btnClass.addEventListener('click', function () {
+        	var divisions = document.getElementsByClassName('c2');
+        	//console.log(divisions);
+        	for (var i = 0; i < divisions.length; i++) {
+        		divisions[i].style.backgroundColor = 'lightgreen';
+        	}
+        });
+        
+        var btnTag = document.getElementById('btn_tag');
+        btnTag.addEventListener('click', function () {
+        	var divisions = document.getElementsByTagName('div');
+        	for (var i = 0; i < divisions.length; i++) {
+        		divisions[i].style.backgroundColor = 'lightpink';
+        	}
+        });
+        
+        /*
+        CSS selector(선택자):
+        	1. 태그 이름: h1, div, span, ...
+        	2. 클래스 이름: .class_name
+        	3. 아이디: #id
+        	4. 태그, 클래스 이름, 아이디 함께 혼합:  div.class_name#id
+        	5. 여러 요소들을 함께 찾는 방법: selector1, selector2, ...
+        	   (예) table, th, td
+        	6. child, descendent 요소: parent > child, ancestor descendent
+        	   (예) ul > li
+        	   (예) div span
+        	7. pseudo selector(가상 선택자): selector:nth-child(), selector:hover, ...
+        document.querySelector('CSS selector')
+          - CSS 선택자(selector)로 찾을 수 있는 첫번째 요소 하나를 리턴.
+        document.querySelectorAll('CSS selector')
+          - CSS 선택자로 찾을 수 있는 모든 요소들의 배열을 리턴.
+        */
+        
+        var btnSel = document.querySelector('#btn_sel'); // document.getElementById('btn_sel');
+        btnSel.addEventListener('click', function () {
+        	var c1 = document.querySelector('.c1');
+        	// querySelector는 HTML element 1개만 리턴.
+        	c1.style.backgroundColor = 'dodgerblue';
+        	c1.style.color = 'white';
+        });
+        
+        var btnSelAll = document.querySelector('button#btn_sel_all');
+        btnSelAll.addEventListener('click', function () {
+        	var c2 = document.querySelectorAll('.c2');
+        	// querySelectorAll은 HTML element들의 배열 객체를 리턴.
+        	for (var i = 0; i < c2.length; i++) {
+        		c2[i].style.backgroundColor = 'dodgerblue';
+        		c2[i].style.color = 'white';
+        		c2[i].style.fontWeight = 'bold';
+        	}
+        });
+        </script>
+        
+    </body>
+</html>

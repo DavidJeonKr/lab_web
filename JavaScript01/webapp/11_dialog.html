@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript</title>
+    </head>
+    <body>
+        <h1>여러가지 Dialog</h1>
+        <button id="btn_alert" onclick="showAlertDlg()">Alert Dialog</button>
+        <button id="btn_confirm">Confirm Dialog</button>
+        <button id="btn_prompt">Prompt Dialog</button>
+        <div id="output">결과 출력</div>
+        
+        <script>
+        // HTML 이벤트 처리 방법 1:
+        // HTML 태그의 onevent 속성 값에 JavaScript 함수 호출 코드를 작성.
+        function showAlertDlg() {
+        	var result = alert('안녕하세요...');  // window.alert(); 에서 window는 생략 가능.
+        	var out = document.getElementById('output');
+        	out.innerHTML = result;
+        	// undefined - alert() 메서드는 리턴 값이 없다.
+        }
+        
+        // HTML 이벤트 처리 방법 2:
+        // HTML 요소(element)를 찾고, element가 가지고 있는 addEventListener(event, callback) 메서드를 사용.
+        // 콜백(callback): 이벤트가 발생됐을 때 (나중에) 자동으로 호출되는 함수.
+        var btnConfirm = document.getElementById('btn_confirm'); // (1) HTML element를 찾음.
+        btnConfirm.addEventListener('click', function () {
+        	var result = confirm('정말 삭제할까요?');  // window.confirm();
+        	document.getElementById('output').innerHTML = result;
+        	// confirm dialog의 리턴 값: 확인 -> true, 취소 -> false
+        }); // (2) HTML element에 이벤트 리스너를 등록.
+        
+        // (1) btn_prompt 버튼을 찾음.
+        var btnPrompt = document.getElementById('btn_prompt');
+        // (2) 버튼에 이벤트 리스너를 등록 - prompt 다이얼로그를 띄우고, 다이얼로그의 리턴 값을 브라우저에 출력.
+        btnPrompt.addEventListener('click', function () {
+        	var result = prompt('이름을 입력하세요...'); // window.prompt()
+        	document.getElementById('output').innerHTML = 'Hello, ' + result;
+        	// prompt dialog의 리턴 값: 확인 -> 프롬프트 입력값, 취소 -> null 
+        });
+        </script>
+        
+    </body>
+</html>

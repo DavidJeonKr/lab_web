@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript Function</title>
+    </head>
+    <body>
+        <h1>JavaScript 함수 특징</h1>
+        <div id="output"></div>
+        
+        <script>
+        var out = document.getElementById('output');
+        
+        // 함수 선언(declaration), 정의(definition)
+        function sayHello(name) {
+        	out.innerHTML += `Hello, <strong>${name}</strong>! <br>`;
+        }
+        
+        // 함수 호출(invokation)
+        sayHello('오쌤');
+        
+        // JavaScript의 함수는 객체(Object)!
+        // JavaScript는 함수 객체를 변수에 저장할 수 있음.
+        var myFunction = sayHello; // sayHello 함수 객체를 변수 myFunction에 할당(저장).
+        out.innerHTML += 'myFunction = ' + myFunction + '<br>';
+        
+        // 변수 myFunction은 함수 객체이기 때문에 호출이 가능.
+        myFunction('홍길동');
+        
+        var result = sayHello('ITWILL'); // 함수 sayHello의 호출 결과(리턴 값)을 변수 result에 할당(저장).
+        out.innerHTML += 'result = ' + result + '<br>';
+        
+        out.innerHTML += '<br>';
+        
+        // 익명 함수(anonymous function): 이름이 없는 함수.
+        // JavaScript는 이름이 없는 함수를 정의(선언)할 수 있음.
+        // 익명 함수를 변수 myFunction2에 할당(저장). 
+        var myFunction2 = function (x) {
+        	out.innerHTML += `x = ${x} <br>`;
+        };
+        
+        out.innerHTML += `myFunction2 = ${myFunction2} <br>`;
+        
+        myFunction2(123); // 함수 호출
+        
+        // 익명 함수를 정의하고, 바로 호출!
+        (function (x) {
+        	out.innerHTML += `x는 ${x}입니다. <br>`;
+        })(3.14);
+        
+        out.innerHTML += '<br>';
+        
+        // JavaScript의 함수는 객체이기 때문에 변수에 저장할 수 있음.
+        // JavaScript는 함수 객체를 다른 함수를 호출할 때 argument로 전달할 수 있음.
+        // -> parameter에 함수 객체를 할당할 수 있음.
+        function calculator(x, y, operator) {
+        	return operator(x, y);
+        }
+        
+        function add(x, y) {
+        	return x + y;
+        }
+        
+        function subtract(x, y) {
+        	return x - y;
+        }
+        
+        // calculator 함수를 호출할 때, add 함수를 argument로 parameter에 전달.
+        result = calculator(1, 2, add);
+        out.innerHTML += `result = ${result} <br>`;
+        
+     	// calculator 함수를 호출할 때, subtract 함수를 argument로 parameter에 전달.
+        result = calculator(1, 2, subtract);
+        out.innerHTML += `result = ${result} <br>`;
+        
+        // calculator 함수를 호출할 때, 익명 함수를 argument로 전달.
+        result = calculator(1, 2, function (x, y) {
+        	return x / y;
+        });
+        out.innerHTML += `result = ${result} <br>`;
+        
+        out.innerHTML += '<br>';
+        
+        // JavaScript에서는 함수 내부에서 다른 함수를 정의할 수 있음.
+        // 내부 함수는 return되지 않으면, 정의된 함수 내부에서만 사용(호출)할 수 있음!
+        function outerFunc() {
+        	var x = 100; // outerFunc 함수의 지역 변수(local variable)
+        	
+        	// 내부 함수(innner function) 정의(선언)
+        	function innerFunc() {
+        		var y = 1234; // innerFunc 함수의 지역 변수
+        		// 내부 함수는 전역 변수 out을 사용할 수 있음.
+        		out.innerHTML += `innerFunc 함수 내부: x = ${x} <br>`; // 외부 함수의 지역 변수 사용 가능
+        		out.innerHTML += `innerFunc 함수 내부: y = ${y} <br>`; // 내부 함수의 지역 변수 사용 가능
+        	}
+        	
+        	innerFunc(); // 내부 함수 호출(invokation)
+        	out.innerHTML += `innerFunc 함수 바깥: x = ${x} <br>`; // 외부 함수의 지역 변수 사용 가능
+    		//out.innerHTML += `innerFunc 함수 바깥: y = ${y} <br>`; // 내부 함수의 지역 변수 사용 불가능!
+        }
+        
+        outerFunc();
+        </script>
+    </body>
+</html>

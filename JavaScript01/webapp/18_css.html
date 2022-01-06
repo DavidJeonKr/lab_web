@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>jQuery</title>
+        <style>
+        /* 미리 정의된 CSS 스타일 */
+        .important {
+        	font-size: 150%;
+        	font-weight: bold;
+        	color: red;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>jQuery CSS 변경</h1>
+        <button id="btn1">CSS property 1개 변경</button>
+        <button id="btn2">CSS property 객체 사용</button>
+        <button id="btn3">add class 속성</button>
+        <button id="btn4">remove class 속성</button>
+        
+        <div id="target"
+        	class="my-class" 
+        	style="background-color: aqua;">여기는 division 입니다...</div>
+        
+        <!-- jQuery 라이브러리 링크 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+        $(document).ready(function () {
+        	var target = $('div#target');
+        	
+        	$('#btn1').click(function () {
+        		// CSS property 1개 변경: css(property_name, property_value)
+        		target.css('background-color', 'indianred');
+        		target.css('color', 'white');
+        	});
+        	
+        	$('#btn2').click(function () {
+        		// CSS property 객체(object) 사용: css({property_name: property_value, ...})
+        		target.css({
+        			backgroundColor: 'darkgreen',
+        			color: 'white',
+        			borderLeft: '8px solid red',
+        			fontSize: '200%',
+        		});
+        	});
+        	
+        	$('#btn3').click(function () {
+        		target.addClass('important');
+        	});
+        	
+        	$('#btn4').click(function () {
+        		target.removeClass('important');
+        	});
+        	
+        });
+        </script>
+    </body>
+</html>

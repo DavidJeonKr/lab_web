@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>jQuery</title>
+    </head>
+    <body>
+        <h1>jQuery 라이브러리 사용하기</h1>
+        
+        <hr>
+        
+        <h1>jQuery 기본 문법</h1>
+        <p> Paragraph 1 </p>
+        <p class="c1"> Paragraph 2 (class=c1) </p>
+        <p class="c1"> Paragraph 3 (class=c1) </p>
+        <p id="p1"> Paragraph 4 (id=p1) </p>
+        <p id="p1"> Paragraph 5 (id=p1) </p>
+        
+        <button id="btn1">모두 숨기기</button>
+        <button id="btn2">모두 보이기</button>
+        <button id="btn3">클래스 c1 숨기기</button>
+        <button id="btn4">클래스 c1 보이기</button>
+        <button id="btn5">아이디 p1 숨기기</button>
+        <button id="btn6">아이디 p1 보이기</button>
+        
+        <!--  
+        jQuery 라이브러리 사용 방법 1:
+          (1) jquery.com 사이트의 다운로드 페이지에서 jquery-x.x.x[.min].js 파일을 다운로드.
+          (2) 다운로드한 파일을 webapp/js 폴더에 복사.
+          (3) jquery 라이브러리를 사용하는 HTML 파일에서 자바스크립트 파일을 링크.
+        
+        jQuery 라이브러리 사용 방법 2:
+          jQuery 라이브러리를 배포하는 CDN(Content Delivery Network)의 URL 주소를 링크.
+        -->
+        
+        <!-- 방법 1: js 폴더에 있는 자바스크립트 파일을 링크 -->
+        <!-- <script src="js/jquery-3.6.0.min.js"></script> -->
+        
+        <!-- 방법 2: CDN URL 주소를 링크 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+        /*
+        jQuery의 기본 문법:
+        $(selector).action(param, ...);
+          - $(selector): HTML element 찾는 방법.
+          - $('#id')는 document.querySelector('#id')와 동일
+          - $('tag_name') 또는 $('.class_name')는 document.querySelectorAll()과 동일.
+          - action(): $(selector)로 찾은 HTML에 요소에 행해질 동작(기능).
+          - action() 함수의 파라미터는 callback 함수인 경우가 많음.
+        */
+        $('h1').click(function () {
+        	$(this).hide();
+        });
+          
+        $('#btn1').click(function () {
+        	$('p').hide(); // 모든 p 태그 요소들을 숨김.
+        	/*
+        	var paras = document.querySelectorAll('p');
+        	for (var i = 0; i < paras.length; i++) {
+        		paras[i].style.display = 'none';
+        	}
+        	*/
+        });
+        
+        $('#btn2').click(function () {
+        	$('p').show(); // 모든 p 태그 요소들을 보여줌.
+        });
+        
+        $('#btn3').click(function () {
+        	$('.c1').hide(); // 클래스 이름이 "c1"인 모든 요소들을 숨김.
+        });
+        
+        $('#btn4').click(function () {
+        	$('.c1').show(); // 클래스 이름이 "c1"인 모든 요소들을 보여줌.
+        });
+        
+        $('#btn5').click(function () {
+        	$('#p1').hide(); // 아이디가 "p1"인 첫번째 요소 1개를 숨김.
+        });
+        
+        $('#btn6').click(function () {
+        	$('#p1').show(); // 아이디가 "p1"인 첫번째 요소 1개를 보여줌.
+        });
+        </script>
+    </body>
+</html>

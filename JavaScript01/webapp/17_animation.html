@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>jQuery</title>
+        <style>
+        div {
+        	width: 400px;
+        	height: 200px;
+        	background-color: lightgray;
+        	margin: 16px;
+        	padding: auto;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>jQuery animation 효과</h1>
+        
+        <button id="btn_hide">Hide</button>
+        <button id="btn_show">Show</button>
+        <button id="btn_toggle">Toggle</button>
+        <br>
+        <button id="btn_fade_out">Fade Out</button>
+        <button id="btn_fade_in">Fade In</button>
+        <button id="btn_fade_toggle">Fade Toggle</button>
+        <br>
+        <button id="btn_slide_up">Slide Up</button>
+        <button id="btn_slide_down">Slide Down</button>
+        <button id="btn_slide_toggle">Slide Toggle</button>
+        <br>
+        
+        <div id="panel">TEST</div>
+        
+        <!-- jQuery 라이브러리 링크 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+        $(document).ready(function () {
+        	var panel = $('div#panel');
+        	
+        	$('#btn_hide').click(function () {
+        		panel.hide(2000); // milli-second (2000 ms = 2초)
+        	});
+        	
+        	$('#btn_show').click(function () {
+        		panel.show(2000);
+        	});
+        	
+        	$('#btn_toggle').click(function () {
+        		panel.toggle(2000);
+        	});
+        	
+        	$('#btn_fade_out').click(function () {
+        		panel.fadeOut(2000);
+        	});
+        	
+        	$('#btn_fade_in').click(function () {
+        		panel.fadeIn(2000);
+        	});
+        	
+        	$('#btn_fade_toggle').click(function () {
+        		panel.fadeToggle(2000);
+        	});
+        	
+        	$('#btn_slide_up').click(function () {
+        		panel.slideUp(2000);
+        	});
+        	
+        	$('#btn_slide_down').click(function () {
+        		panel.slideDown(2000);
+        	});
+        	
+        	$('#btn_slide_toggle').click(function () {
+        		panel.slideToggle(2000);
+        	});
+        	
+        });
+        </script>
+    </body>
+</html>

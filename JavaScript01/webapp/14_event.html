@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript</title>
+        <style>
+        div {
+        	border: 1px solid gray;
+        	padding: 16px;
+        	margin: 16px;
+        }
+        p {
+        	border: 1px solid red;
+        	padding: 16px;
+        	margin: 16px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Event Capturing vs Bubbling</h1>
+        
+        <div id="parent">
+        	<p id="child">Event Bubbling: 자식 요소 -> 부모 요소</p>
+        </div>
+        
+        <div id="parent2">
+        	<p id="child2">Event Capturing: 부모 요소 -> 자식 요소</p>
+        </div>
+        
+        <script>
+        /* addEventListener(event, callback, useCapture)
+        - event: 리스너가 처리할 이벤트 이름(문자열).
+        - callback: 이벤트가 발생했을 때 브라우저가 호출(실행)하는 콜백 함수.
+        - useCapture: 이벤트 처리 방식.
+          (1) capturing 방식: 부모 요소가 먼저 이벤트를 처리하고 자식 요소가 그 다음에 이벤트를 처리하는 방식.
+              useCapture 파라미터에 true를 전달.
+          (2) bubbling 방식: 자식 요소가 먼저 이벤트를 처리하고 부모 요소가 그 다음에 이벤트를 처리하는 방식.
+              useCapture 파라미터에 false를 전달.
+          (3) useCapture 파라미터에 값을 전달하지 않으면, 기본값은 false(bubbling 방식).
+        */
+        
+        var parent = document.querySelector('#parent');
+        parent.addEventListener('click', function () {
+        	alert('div 입니다.');
+        }, false);
+        
+        var child = document.querySelector('#child');
+        child.addEventListener('click', function (event) {
+        	alert('paragraph 입니다.');
+        	event.stopPropagation(); // 이벤트를 전파(propagation)하지 않음!
+        	// event bubbling 방식에서는 자식 요소만 이벤트를 처리하고, 부모 요소로 이벤트를 전파하지 않음.
+        }, false);
+        
+        var parent2 = document.querySelector('#parent2');
+        parent2.addEventListener('click', function (event) {
+        	alert('div2 입니다.');
+        	event.stopPropagation();
+        	// event capturing 방식에서는 부모 요소만 이벤트를 처리하고, 자식 요소로 이벤트를 전파하지 않음.
+        }, true);
+        
+        var child2 = document.querySelector('#child2');
+        child2.addEventListener('click', function (event) {
+        	alert('paragraph2 입니다.');
+        }, true);
+        </script>
+    </body>
+</html>

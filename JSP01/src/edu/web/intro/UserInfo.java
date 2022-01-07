@@ -21,7 +21,7 @@ public class UserInfo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	System.out.println("userInfo.doGet() 메서드 호출");
     	
-    	//응답(response)의 ContentType을 설정(HTML & UTF-8
+    	//응답(response)의 ContentType을 설정(HTML & UTF-8)
     	response.setContentType("text/html; charset = UTF-8");
     	
     	//응답 

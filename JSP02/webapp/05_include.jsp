@@ -20,7 +20,8 @@
 			<h2>메인 페이지</h2>
 		</section>
 		<%@include file="05_footer.jsp" %>
-	</body>
-	
+	<!-- Today what i lean  -->
 	<!-- JSP 주말 동안에 챕터 8 챕터 9장 -->
+	<!-- Servlet 1장 2장 3장, jsp 8장 9장 복습 -->
+	<!-- 123 -->
 </html>

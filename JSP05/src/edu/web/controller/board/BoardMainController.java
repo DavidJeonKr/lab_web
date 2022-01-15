@@ -1,11 +1,9 @@
 package edu.web.controller.board;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.PageContext;
 
 import edu.web.controller.Action;
 import edu.web.domain.Board;

@@ -1,6 +1,6 @@
 package edu.web.domain;
 
-public class Users {
+public class User {
 	// DB의 테이블 이름, 컬럼 이름들을 상수로 정의 하고 있는 내부 클래스
 	
 	public static abstract class Entry {
@@ -16,9 +16,9 @@ public class Users {
 	private String email;
 	private int points;
 	
-	public Users() {}
+	public User() {}
 
-	public Users(String userid, String pwd, String email, int points) {
+	public User(String userid, String pwd, String email, int points) {
 		super();
 		this.userid = userid;
 		this.pwd = pwd;

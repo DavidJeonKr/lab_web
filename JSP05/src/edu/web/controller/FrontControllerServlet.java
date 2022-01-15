@@ -52,7 +52,7 @@ public class FrontControllerServlet extends HttpServlet {
 		commands.put("/", new MainController());
 		commands.put("/board/main", new BoardMainController());
 		commands.put("/board/insert", new BoardInsertController());
-		
+		//
 		commands.put("/user/main", new UserMainController());
 	}
 

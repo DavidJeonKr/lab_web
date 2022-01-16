@@ -69,7 +69,12 @@ public class BoardDaoImpl implements BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DataSourceUtil.close(conn, pstmt, rs);
+			try {
+				DataSourceUtil.close(conn, pstmt, rs);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return list;
@@ -101,7 +106,12 @@ public class BoardDaoImpl implements BoardDao {
 			e.printStackTrace();
 		} finally {
 			// 사용했던 리소스 반환 - Connection 객체를 Connection Pool로 반환.
-			DataSourceUtil.close(conn, pstmt);
+			try {
+				DataSourceUtil.close(conn, pstmt);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return result;
@@ -118,10 +128,10 @@ public class BoardDaoImpl implements BoardDao {
 		ResultSet rs = null;
 		try {
 			conn = ds.getConnection();
-			
 			pstmt = conn.prepareStatement(SQL_SELECT_BY_BNO);
 			System.out.println(SQL_SELECT_BY_BNO);
 			pstmt.setInt(1, bno);
+			
 			
 			rs = pstmt.executeQuery();
 			if (rs.next()) { // 검색된 결과가 있으면
@@ -139,7 +149,12 @@ public class BoardDaoImpl implements BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DataSourceUtil.close(conn, pstmt, rs);
+			try {
+				DataSourceUtil.close(conn, pstmt, rs);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return board;
@@ -163,7 +178,12 @@ public class BoardDaoImpl implements BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DataSourceUtil.close(conn, pstmt);
+			try {
+				DataSourceUtil.close(conn, pstmt);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return result;

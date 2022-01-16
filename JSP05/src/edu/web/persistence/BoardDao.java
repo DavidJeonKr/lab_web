@@ -57,4 +57,7 @@ public interface BoardDao {
 	 */
 	int update(int bno);
 	
+	
+	
+	
 }

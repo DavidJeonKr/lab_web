@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import edu.web.controller.board.BoardDetailController;
 import edu.web.controller.board.BoardInsertController;
 import edu.web.controller.board.BoardMainController;
+import edu.web.controller.user.UserDetailController;
+import edu.web.controller.user.UserInsertController;
 import edu.web.controller.user.UserMainController;
 
 import static edu.web.controller.Action.REDIRECT_PREFIX;
@@ -54,7 +56,10 @@ public class FrontControllerServlet extends HttpServlet {
 		commands.put("/board/main", new BoardMainController());
 		commands.put("/board/insert", new BoardInsertController());
 		commands.put("/board/detail", new BoardDetailController());
+		
 		commands.put("/user/main", new UserMainController());
+		commands.put("/user/insert", new UserInsertController());
+		commands.put("/user/detail", new UserDetailController());
 	}
 
 	/**

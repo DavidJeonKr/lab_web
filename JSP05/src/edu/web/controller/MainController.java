@@ -10,6 +10,6 @@ public class MainController implements Action {
 		System.out.println("mainContoller.execute() 메서드 호출");
 		
 		return "WEB-INF/index.jsp";
+		
 	}
-
 }

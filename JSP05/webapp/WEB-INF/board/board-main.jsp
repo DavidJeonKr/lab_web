@@ -21,7 +21,7 @@
         	</header>
         	
         	<nav> <!-- 게시판 기능 메뉴 -->
-        		<ul class="nav nav-tabs bg-light">
+        		<ul class="nav nav-tabs bg-dark">
         			<li class="nav-item">
         				<a class="nav-link" href="../">메인 페이지 돌아가기</a>
         			</li>
@@ -30,6 +30,19 @@
         			</li>
         		</ul>
         	</nav>
+        	
+            <div> <!-- 검색 기능 -->
+                <form action="search" method="get">
+                    <select name="type">
+                        <option value="1">제목</option>
+                        <option value="2">내용</option>
+                        <option value="3">제목 + 내용</option>
+                        <option value="4">작성자</option>
+                    </select>
+                    <input type="text" name="keyword" placeholder="검색어 입력" required />
+                    <input class="btn btn-secondary" type="submit" value="검색" />
+                </form>
+            </div>
         	
         	<div> <!-- 게시판 목록 테이블 -->
         		<table class="table table-hover">

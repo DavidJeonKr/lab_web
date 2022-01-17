@@ -46,6 +46,7 @@ public class BoardDaoImpl implements BoardDao {
 		try {
 			conn = ds.getConnection();  // Connection Pool에 있는 Connection 객체를 빌려옴.
 			System.out.println(SQL_SELECT_ALL);
+			
 			pstmt = conn.prepareStatement(SQL_SELECT_ALL);  // SQL 문장 작성
 			rs = pstmt.executeQuery();  // DB로 SQL 문장을 전송, 실행, 결과 반환.
 			while (rs.next()) { // ResultSet에 레코드(행)가 있으면
@@ -72,7 +73,6 @@ public class BoardDaoImpl implements BoardDao {
 			try {
 				DataSourceUtil.close(conn, pstmt, rs);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -105,11 +105,10 @@ public class BoardDaoImpl implements BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// 사용했던 리소스 반환 - Connection 객체를 Connection Pool로 반환.
 			try {
+				// 사용했던 리소스 반환 - Connection 객체를 Connection Pool로 반환.
 				DataSourceUtil.close(conn, pstmt);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -128,10 +127,10 @@ public class BoardDaoImpl implements BoardDao {
 		ResultSet rs = null;
 		try {
 			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(SQL_SELECT_BY_BNO);
 			System.out.println(SQL_SELECT_BY_BNO);
 			pstmt.setInt(1, bno);
-			
 			
 			rs = pstmt.executeQuery();
 			if (rs.next()) { // 검색된 결과가 있으면
@@ -152,7 +151,6 @@ public class BoardDaoImpl implements BoardDao {
 			try {
 				DataSourceUtil.close(conn, pstmt, rs);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -181,12 +179,130 @@ public class BoardDaoImpl implements BoardDao {
 			try {
 				DataSourceUtil.close(conn, pstmt);
 			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int update(Board board) {
+		System.out.println("boardDaoImpl.update(board) 메서드 호출");
+		
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = ds.getConnection();
+			
+			pstmt = conn.prepareStatement(SQL_UPDATE_TITLE_CONTENT);
+			System.out.println(SQL_UPDATE_TITLE_CONTENT);
+			pstmt.setString(1, board.getTitle()); // 업데이트할 글 제목
+			pstmt.setString(2, board.getContent()); // 업데이터할 글 내용
+			pstmt.setInt(3, board.getBno()); // 업데이트할 글 번호
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DataSourceUtil.close(conn, pstmt);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int delete(int bno) {
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(SQL_DELETE);
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				DataSourceUtil.close(conn, pstmt);
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
 		return result;
+	}
+
+
+
+	@Override
+	public List<Board> read(int type, String keyword) {
+		List<Board> list = new ArrayList<Board>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = ds.getConnection();
+			switch (type) {
+			case 1:
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_TITLE);
+				pstmt.setString(1, "%"+keyword+"%");
+				break;
+			case 2:
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_CONTENT);
+				pstmt.setString(1, "%"+keyword+"%");
+				break;
+			case 3:
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_TITLE_OR_CONTENT);
+				pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setString(2, "%"+keyword+"%");
+				break;
+			case 4:
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_USERID);
+				pstmt.setString(1, "%"+keyword+"%");
+				break;
+			}
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int bno = rs.getInt(COL_BNO);
+				String title = rs.getString(COL_TITLE);
+				String content = rs.getString(COL_CONTENT);
+				String userid = rs.getString(COL_USERID);
+				Date regDate = rs.getDate(COL_REG_DATE);
+				int viewCnt = rs.getInt(COL_VIEW_CNT);
+				int replyCnt = rs.getInt(COL_REPLY_CNT);
+				String attachment = rs.getString(COL_ATTACH);
+				
+				list.add(new Board(bno, title, content, userid, regDate, viewCnt, replyCnt, attachment));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				DataSourceUtil.close(conn, pstmt, rs);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 
 }

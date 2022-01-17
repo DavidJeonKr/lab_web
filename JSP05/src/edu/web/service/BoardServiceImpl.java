@@ -63,4 +63,25 @@ public class BoardServiceImpl implements BoardService {
 		return board;
 	}
 
+	@Override
+	public int update(Board board) {
+		System.out.println("boardServiceImpl.update(board) 메서드 호출");
+		
+		return boardDao.update(board);
+	}
+
+	@Override
+	public int delete(int bno) {
+		System.out.println("boardServiceImpl.delete(bno=" + bno + ") 메서드 호출");
+		
+		return boardDao.delete(bno);
+	}
+
+	@Override
+	public List<Board> select(int type, String keyword) {
+		System.out.println("boardServiceImpl.select(type=" + type + ", keyword=" + keyword + ") 메서드 호출");
+		
+		return boardDao.read(type, keyword);
+	}
+
 }

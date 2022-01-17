@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService {
 	public User select(String userid) {
 		User user = userDao.read(userid);
 		
-		
 		return user;
 	}
 

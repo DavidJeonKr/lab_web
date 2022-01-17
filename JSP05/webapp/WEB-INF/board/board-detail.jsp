@@ -2,23 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>MVC</title>
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" 
-        	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
-    </head>
-    <body>
-        <div class="container-fluid">
-            <header class="jumbotron text-center">
-                <h1>글 상세 보기 페이지</h1>
-            </header>
-            
+	<head>
+		<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+	<title>새 글 작성</title>
+	</head>
+	<body>
+		<div class="container-fluid">
             <nav> <!-- navigation menu -->
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
@@ -29,8 +22,9 @@
                     </li>
                     <li class="nav-item">
                         <!-- TODO -->
-                        <a class="nav-link">수정하기</a>
+                        <a class="nav-link" href="./update?bno=${board.bno}">수정하기</a>
                     </li>
+
                 </ul>
             </nav>
             

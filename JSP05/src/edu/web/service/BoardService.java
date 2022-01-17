@@ -34,4 +34,29 @@ public interface BoardService {
 	 */
 	Board select(int bno);
 
+	/**
+	 * 게시글의 내용을 업데이트하는 서비스.
+	 * 
+	 * @param board 업데이트할 글 번호, 제목, 내용을 가지고 있는 Board 객체.
+	 * @return 업데이트 성공하면 1, 실패하면 0.
+	 */
+	int update(Board board);
+
+	/**
+	 * 삭제할 게시글의 번호를 전달받아서, 해당 글을 삭제하는 서비스.
+	 * 
+	 * @param bno 삭제할 글 번호(primary key). int.
+	 * @return 삭제 성공하면 1, 실패하면 0.
+	 */
+	int delete(int bno);
+
+	/**
+	 * 검색 타입과 검색어를 전달받아서, Board를 원소로 갖는 List 객체를 리턴.
+	 * 
+	 * @param type 검색 타입(1-제목, 2-내용, 3-제목+내용, 4-작성자).
+	 * @param keyword 검색어.
+	 * @return 검색 결과(ArrayList<Board>).
+	 */
+	List<Board> select(int type, String keyword);
+	
 }

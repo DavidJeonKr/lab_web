@@ -1,0 +1,7 @@
+{
+    "cities": [
+        {"name": "뉴욕", "img": "images/newyork.jpg"},
+        {"name": "파리", "img": "images/paris.jpg"},
+        {"name": "샌프란시스코", "img": "images/sanfran.jpg"}
+    ]
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+    <display-name>JSP08</display-name>
+
+    <!-- Filter 설정 -->
+    <!-- web.xml 파일의 Filter 설정 순서대로 필터들이 적용됨. 
+    @WebFilter 어노테이션은 필터 적용 순서를 지정할 수 없음. -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>edu.web.jsp08.filter.EncodingFilter</filter-class>
+        <init-param> <!-- Filter 클래스의 init() 메서드의 파라미터에 전달되는 값 -->
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern> <!-- 모든 요청 -->
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>authFilter</filter-name>
+        <filter-class>edu.web.jsp08.filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/board/detail</url-pattern>
+        <url-pattern>/board/insert</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>testFilter</filter-name>
+        <filter-class>edu.web.jsp08.filter.TestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>testFilter</filter-name>
+        <url-pattern>/</url-pattern>
+        <url-pattern>/main</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>secondFilter</filter-name>
+        <filter-class>edu.web.jsp08.filter.SecondFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>secondFilter</filter-name>
+        <url-pattern>/main</url-pattern>
+    </filter-mapping>
+    
+    <!-- Servlet 설정 -->
+    
+    <!-- JSP 설정 -->
+    
+    <!-- 리소스 참조 설정 -->
+
+</web-app>

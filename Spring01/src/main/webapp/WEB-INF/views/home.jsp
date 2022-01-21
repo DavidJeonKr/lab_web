@@ -13,5 +13,12 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 <p> who is my ${person}.</p>
+
+<hr>
+
+	<ul>
+		<li><a href="sample1">샘플 페이지1</a></li>
+		<li><a href="sample2">샘플 페이지2</a></li>
+	</ul>
 </body>
 </html>

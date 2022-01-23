@@ -22,7 +22,7 @@ public class BoardController {
 	public void boardInsert() {
 		logger.info("boardInsert() 호출");
 	}
-	
+	//RequestMapping
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String boardInsertPost(int bno, String title) {
 //		int bno = Integer.parseInt(request.getParameter("bno"));

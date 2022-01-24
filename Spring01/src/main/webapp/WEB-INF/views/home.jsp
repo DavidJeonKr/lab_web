@@ -23,6 +23,11 @@
 		<li class="list-group-item"><a href="sample2">샘플 페이지2</a></li>
 		<li class="list-group-item"><a href="board/main">게시판 메인 페이지</a></li>
 		<li class="list-group-item"><a href="board/insert">새 글 작성</a></li>
+		<li class="list-group-item"><a href="board/insert2">새 글 작성2</a></li>
+		<li class="list-group-item"><a href="board/insert3">새 글 작성3</a></li>
+		<li class="list-group-item"><a href="board/insert4">새 글 작성4</a></li>
+		<li class="list-group-item"><a href="forward-test">Forward 테스트</a></li>
+		<li class="list-group-item"><a href="redirect-test">Redirect 테스트</a></li>
 		
 	</ul>
 	

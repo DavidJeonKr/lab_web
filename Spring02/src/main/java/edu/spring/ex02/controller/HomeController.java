@@ -1,4 +1,4 @@
-package edu.spring.ex02;
+package edu.spring.ex02.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

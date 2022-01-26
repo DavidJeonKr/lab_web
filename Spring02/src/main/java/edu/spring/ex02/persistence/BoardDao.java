@@ -7,21 +7,12 @@ import edu.spring.ex02.domain.Board;
 // CRUD(Create, Read, Update, Delete)
 public interface BoardDao {
 	
-	//selectAll
-	public List<Board> read();
-	//selectByOne
+	List<Board> read();
 	Board read(int bno);
-	//insert
-	int creat(Board board); // board.getTitle(), board.getContent(), board.getUserid()
-	//update
-	int update(int bno);
-	//발표 자료 누구랑 누구
-	// 언제까지는 자료조사, 개발을 하고, 등등
-	//update viewcount
-	int updateView(int bno);
+	int create(Board board);
+	int update(Board board);
+	int updateViewCnt(int bno);
+	int delete(int bno);
+	List<Board> read(int type, String keyword);
 	
-	
-	//delete
-	int delte(int bno);
-
 }

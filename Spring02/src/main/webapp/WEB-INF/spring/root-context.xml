@@ -42,7 +42,7 @@
     </bean>
     
     <!-- 스프링 컨테이너가 edu.spring.ex02.persistence 패키지와 그 하위 패키지의 컴포넌트들을 생성, 관리. -->
-    <context:component-scan base-package="edu.spring.ex02.persistence">
-    </context:component-scan>
+    <context:component-scan base-package="edu.spring.ex02.persistence"></context:component-scan>
+    <context:component-scan base-package="edu.spring.ex02.service"></context:component-scan>
     
 </beans>

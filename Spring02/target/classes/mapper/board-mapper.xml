@@ -43,8 +43,28 @@
     
     <!-- 해당 글 번호의 게시글 삭제 -->
     <delete id="delete">
-    DELETE FROM ${TABLE_BOARDS}
+    DELETE FROM ${TABLE_BOARDS} 
     WHERE ${COL_BNO} = #{bno}
     </delete>
+
+    <!-- 키워드 검색: (1) 제목, (2) 내용, (3) 제목+내용, (4) 작성자 아이디 -->
+    <!-- Dynamic Query -->
+    <select id="selectByKeyword" resultType="Board">
+    SELECT * FROM ${TABLE_BOARDS}
+        <if test="type == 1">
+        WHERE lower(${COL_TITLE}) LIKE #{keyword}
+        </if>
+        <if test="type == 2">
+        WHERE lower(${COL_CONTENT}) LIKE #{keyword}
+        </if>
+        <if test="type == 3">
+        WHERE lower(${COL_TITLE}) LIKE #{keyword}
+            OR lower(${COL_CONTENT}) LIKE #{keyword}
+        </if>
+        <if test="type == 4">
+        WHERE lower(${COL_USERID}) LIKE #{keyword}
+        </if>
+    ORDER BY ${COL_BNO} DESC
+    </select>
 
 </mapper>

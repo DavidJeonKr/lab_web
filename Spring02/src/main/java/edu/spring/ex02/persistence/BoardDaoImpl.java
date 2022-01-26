@@ -1,6 +1,8 @@
 package edu.spring.ex02.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -21,41 +23,55 @@ public class BoardDaoImpl implements BoardDao {
 	
 	@Override
 	public List<Board> read() {
-		logger.info("boardDaoImple.read() 호출");
+		logger.info("boardDaoImpl.read() 호출");
 		
 		return sqlSession.selectList(BOARD_NAMESPACE + ".selectAll");
 	}
-
+	
 	@Override
 	public Board read(int bno) {
 		logger.info("boardDaoImpl.read(bno={}) 호출", bno);
 		
 		return sqlSession.selectOne(BOARD_NAMESPACE + ".selectByBno", bno);
 	}
-
+	
 	@Override
-	public int creat(Board board) {
+	public int create(Board board) {
 		logger.info("boardDaoImpl.create({}) 호출", board);
 		
 		return sqlSession.insert(BOARD_NAMESPACE + ".create", board);
 	}
-
+	
 	@Override
-	public int update(int bno) {
+	public int update(Board board) {
+		logger.info("boardDaoImpl.update({}) 호출", board);
 		
-		return sqlSession.update(BOARD_NAMESPACE + ".", bno);
+		return sqlSession.update(BOARD_NAMESPACE + ".update", board);
 	}
-
+	
 	@Override
-	public int updateView(int bno) {
+	public int updateViewCnt(int bno) {
+		logger.info("boardDaoImpl.updateViewCnt(bno={}) 호출", bno);
 		
-		return 0;
+		return sqlSession.update(BOARD_NAMESPACE + ".updateViewCnt", bno);
 	}
-
+	
 	@Override
-	public int delte(int bno) {
+	public int delete(int bno) {
+		logger.info("boardDaoImpl.delete(bno={})", bno);
 		
-		return 0;
+		return sqlSession.delete(BOARD_NAMESPACE + ".delete", bno);
+	}
+	
+	@Override
+	public List<Board> read(int type, String keyword) {
+		logger.info("boardDaoImpl.read(type={}, keyword={})", type, keyword);
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("type", type);
+		params.put("keyword", "%" + keyword.toLowerCase() + "%");
+		
+		return sqlSession.selectList(BOARD_NAMESPACE + ".selectByKeyword", params);
 	}
 	
 }

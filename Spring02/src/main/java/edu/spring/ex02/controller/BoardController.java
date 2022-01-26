@@ -33,4 +33,54 @@ public class BoardController {
 		// controller 메서드가 리턴하는 문자열이 없으면 요청 주소로 View(jsp 파일)을 찾음.
 	}
 	
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public void insert() {
+		log.info("insert() 호출");
+		
+	}
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public String insert(Board board) {
+		log.info("insert({}) POST 호출", board);
+		// 클라이언트에서 보낸 데이터들을 서비스 계층의 객체 (메서드)를 사용해서 새 글 작성
+		// 게시판 메인 페이지로 이동한다(redirect)
+		boardService.insert(board);
+		return "redirect:/board/main";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public void detail(int bno, Model model) {
+		log.info("detail(bno={}) GET 호출", bno);
+		
+		//TODO: 서비스 계층의 객체 (메서드)를 사용해서 해당 글 번호를 검색하고 
+		Board board =boardService.select(bno);
+		// 검색된 내용을 View(JSP)에게 전달.
+		model.addAttribute("board", board);
+		
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public void update(int bno, Model model) {
+		log.info("update(bno={})", bno);
+		
+		Board board = boardService.select(bno);
+		model.addAttribute("board", board);
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(Board board) {
+		log.info("update({}) POST 호출", board);
+		boardService.update(board);
+		
+		return "redirect:/board/main";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(int bno) {
+		
+		boardService.delete(bno);
+		
+		return "redirect:/board/main";
+	}
+	
+	
 }

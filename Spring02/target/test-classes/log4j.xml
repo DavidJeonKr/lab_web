@@ -10,10 +10,12 @@
 		</layout>
 	</appender>
 	
+	
+	<!-- log level 순서: all < debug < info < warn < error < fatal  -->
 	<!-- Application Loggers -->
 	<logger name="edu.spring.ex02">
-		<level value="info" />
-	</logger>
+		<level value="debug" />
+	</logger> 
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">

@@ -1,8 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<!-- root-context.xml: 스프링 프레임워크에서 생성하고 관리하는 자바 객체(bean)들을 설정.
+        DataSource, SqlSession, Service 계층, Persistence 계층 Java bean.
+        스프링 프레임워크에서 Java bean들을 생성하고 관리하는 목적: 의존성 주입을 위해서.
+        @Autowired 또는 @Inject 어노테이션이 설정된 변수에 자동으로 주입됨. 
+    -->
+    
+    <!-- Oracle DataSource(DBCP: Database Connection Pool) 객체(bean) 설정 -->
+    <!-- DataSource ds = new DriverManagerDataSource();
+         ds.setDriverClassName("oracle.jdbc.OracleDriver"); -->
+    <bean id="ds"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+        <property name="username" value="scott" />
+        <property name="password" value="tiger" />
+    </bean>
+    
+    <!-- MyBatis 프레임워크에서 사용할 SqlSessionFactory 객체(SqlSession을 생성하기 위한 객체) 설정 -->
+    <!-- SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBean(); 
+         sqlSessionFactory.setDataSource(ds); -->
+    <bean id="sqlSessionFactory"
+        class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds" />
+        <property name="configLocation" value="classpath:/mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:/mapper/*.xml" />
+    </bean>
+    
+    <!-- SqlSession 객체(SQL 문장 실행, 결과 처리를 담당) 설정 -->
+    <!-- SqlSession sqlSession = new SqlSessionTemplate(sqlSessionFactory); -->
+    <bean id="sqlSession"
+        class="org.mybatis.spring.SqlSessionTemplate"
+        destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+    
+    <!-- 스프링 컨테이너가 edu.spring.ex02.persistence 패키지와 그 하위 패키지의 컴포넌트들을 생성, 관리. -->
+    <context:component-scan base-package="edu.spring.ex02.persistence">
+    </context:component-scan>
+    
 </beans>

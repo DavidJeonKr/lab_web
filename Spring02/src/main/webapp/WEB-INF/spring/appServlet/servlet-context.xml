@@ -21,8 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+    <!-- DispatcherServlet은 edu.spring.ex02.controller 패키지와 그 하위 패키지의 컴포넌트들을 생성, 관리. -->
 	<context:component-scan base-package="edu.spring.ex02.controller" />
-	
-	
 	
 </beans:beans>

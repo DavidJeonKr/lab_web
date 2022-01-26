@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.spring.ex02.mapper.BoardMapper">
+    <!-- mapper: SqlSession 객체가 실행시킬 SQL 문장들을 작성 -->
+    <!-- mybatis-config.xml 파일에서 
+        (1) typeAilases가 설정되어 있어서, resultType의 클래스 이름을 패키지 이름 생략하고 사용 가능.
+        (2) 테이블 이름과 컬럼 이름들이 프로퍼티로 정의가 되어 있어서, SQL 문장에서 프로퍼티들을 사용 가능.
+    -->
+
+    <!-- 게시글 전체 검색 -->
+    <select id="selectAll" resultType="Board">
+    SELECT * FROM ${TABLE_BOARDS} 
+    ORDER BY ${COL_BNO} DESC
+    </select>
+    
+    <!-- 글 번호로 검색 -->
+    <select id="selectByBno" resultType="Board">
+    SELECT * FROM ${TABLE_BOARDS} 
+    WHERE ${COL_BNO} = #{bno}
+    </select>
+    
+    <!-- 새 글 작성: 
+        bno: 시퀀스 - 자동 입력, reg_date: 기본값 sysdate, view_cnt: 기본값 0, reply_cnt: 기본값 0
+    -->
+    <insert id="create">
+    INSERT INTO ${TABLE_BOARDS} (${COL_TITLE}, ${COL_CONTENT}, ${COL_USERID}) 
+    VALUES (#{title}, #{content}, #{userid})
+    </insert>
+    
+    <!-- 게시글 수정: 해당 글 번호의 글 제목, 내용 수정. reg_date는 수정하는 서버 시간. -->
+    <update id="update">
+    UPDATE ${TABLE_BOARDS} 
+    SET ${COL_TITLE} = #{title}, ${COL_CONTENT} = #{content}, ${COL_REG_DATE} = sysdate 
+    WHERE ${COL_BNO} = #{bno}
+    </update>
+    
+    <!-- 게시글의 view_cnt를 1 증가 -->
+    <update id="updateViewCnt">
+    UPDATE ${TABLE_BOARDS} 
+    SET ${COL_VIEW_CNT} = ${COL_VIEW_CNT} + 1 
+    WHERE ${COL_BNO} = #{bno}
+    </update>
+    
+    <!-- 해당 글 번호의 게시글 삭제 -->
+    <delete id="delete">
+    DELETE FROM ${TABLE_BOARDS}
+    WHERE ${COL_BNO} = #{bno}
+    </delete>
+
+</mapper>

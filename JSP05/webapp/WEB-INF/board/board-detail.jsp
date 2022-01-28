@@ -40,7 +40,7 @@
                         type="text" value="${board.title}" readonly required />
                 </div>
                 <div class="form-group">
-                    <label for="content">내용</label>
+                    <label for="content" style = "background: black;">내용</label>
                     <textarea class="form-control" id="content" name="content"
                         rows="5" readonly required>${board.content}</textarea>
                 </div>

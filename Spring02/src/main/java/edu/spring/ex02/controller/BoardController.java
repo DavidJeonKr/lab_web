@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.spring.ex02.domain.Board;
 import edu.spring.ex02.service.BoardService;
@@ -76,10 +77,21 @@ public class BoardController {
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(int bno) {
+		log.info("delete({}) GET 호출", bno);
 		
 		boardService.delete(bno);
 		
 		return "redirect:/board/main";
+	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(@RequestParam(value = "type") int type, @RequestParam(value = "keyword") String keyword, Model model) {
+		log.info("search(type: {},keyword: {})", type, keyword);
+		
+		List<Board> list = boardService.select(type, keyword);
+		model.addAttribute("boardList", list); //jsp파일에서 ${boardList} EL로 사용되기 떄문에
+		
+		return "board/main"; // /WEB-INF/views/board/main.jsp 파일을 view로 사용
 	}
 	
 	

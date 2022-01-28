@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,7 +18,13 @@
 		
 		<nav>
 			<ul> <!-- TODO: -->
-				<li><a href="">로그인</a></li>
+			<c:if test="${empty signInUserId}"> <!-- 로그인 되어 있지 않은 경우 -->
+				<li><a href="./user/register">회원가입</a></li>
+				<li><a href="./user/signin">로그인</a></li>
+			</c:if>
+			<c:if test="${not empty signInUserId}"> <!-- 로그인 되어 있는 경우 -->
+				<li><a href="./user/signout">로그아웃</a></li>
+			</c:if>
 				<li><a href="./board/main">게시판</a></li>
 			</ul>
 		</nav>

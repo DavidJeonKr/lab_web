@@ -21,9 +21,14 @@
         
             <nav > <!-- 메뉴 -->
                 <ul class="navbar">
-                    <li class="nav-item"> <!-- TODO -->
-                        <a class="nav-link" href="">로그인</a>
+                <c:if test="${empty signInUserId}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../user/signin">로그인</a>
                     </li>
+                </c:if>
+                <c:if test="${not empty signInUserId}">
+                	<li><a href="../user/signout">로그아웃</a></li>
+                </c:if>
                     <li class="nav-item">
                         <a class="nav-link" href="../">메인</a>
                     </li>
@@ -32,6 +37,20 @@
                     </li>
                 </ul>
             </nav>
+            
+            <!-- TODO: 검색 창 -->
+            <div>
+            	<form action="./search" method="get">
+            		<select name="type">
+            			<option value="1">제목</option>
+            			<option value="2">내용</option>
+            			<option value="3">제목+내용</option>
+            			<option value="4">글쓴이</option>
+            		</select>
+            		<input type="text" name="keyword" placeholder="검색어 입력" autofocus required>
+            		<input type="submit" value="검색">
+            	</form>
+            </div>
             
             <div>
                 <table class="table">

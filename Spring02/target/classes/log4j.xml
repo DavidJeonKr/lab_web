@@ -13,7 +13,7 @@
 	<!-- Application Loggers -->
 	<!-- edu.spring.ex02 패키지와 그 하위 패키지에서 클래스에서 info 레벨 이상의 로그들을 출력 -->
 	<logger name="edu.spring.ex02">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

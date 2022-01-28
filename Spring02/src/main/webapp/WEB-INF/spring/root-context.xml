@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- root-context.xml: 스프링 프레임워크에서 생성하고 관리하는 자바 객체(bean)들을 설정.
@@ -44,5 +46,8 @@
     <!-- 스프링 컨테이너가 edu.spring.ex02.persistence 패키지와 그 하위 패키지의 컴포넌트들을 생성, 관리. -->
     <context:component-scan base-package="edu.spring.ex02.persistence"></context:component-scan>
     <context:component-scan base-package="edu.spring.ex02.service"></context:component-scan>
+    
+    <!-- 매퍼(mapper) 객체를 생성, 관리 -->
+    <mybatis-spring:scan base-package="edu.spring.ex02.mapper"/>
     
 </beans>

@@ -39,7 +39,7 @@
 					<div>
 						<label for="userid">작성자</label>
 						<input class="form-control" type="text" value="${board.userid}" id="userid" name="userid" required readonly>
-					</div>
+					</div>555555555555555
 					
 					<div>
 						<label for="reg_date">최종 수정 시간</label>

@@ -24,4 +24,24 @@
     <!-- DispatcherServlet은 edu.spring.ex02.controller 패키지와 그 하위 패키지의 컴포넌트들을 생성, 관리. -->
 	<context:component-scan base-package="edu.spring.ex02.controller" />
 	
+    <!-- Interceptor 설정: (1) Bean 생성, 관리. (2) URL 매핑. -->
+    <!-- HandlerIntercept authInterceptor = new AuthInterceptor(); -->
+    <beans:bean id="authInterceptor"
+        class="edu.spring.ex02.interceptor.AuthInterceptor" />
+    <beans:bean id="signInInterceptor"
+        class="edu.spring.ex02.interceptor.SignedInInterceptor" />
+    
+    <interceptors>
+        <interceptor> <!-- 게시판 기능들 중 로그인이 필수인 서비스들 -->
+            <mapping path="/board/insert"/> <!-- 새 글 작성 -->
+            <mapping path="/board/detail"/> <!-- 상세 보기 -->
+            <mapping path="/board/delete"/> <!-- 글 삭제 -->
+            <beans:ref bean="authInterceptor"/>
+        </interceptor>
+        <interceptor> <!-- 아이디/패스워드 확인 후 로그인 성공/실패 처리 -->
+            <mapping path="/user/signin"/>
+            <beans:ref bean="signInInterceptor"/>
+        </interceptor>
+    </interceptors>
+    
 </beans:beans>

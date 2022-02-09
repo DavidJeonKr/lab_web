@@ -5,7 +5,7 @@
     
     <!-- 데이터베이스의 테이블 이름, 컬럼 이름들을 정의 -->
     <properties>
-    	<!-- BOARDS -->
+        <!-- BOARDS 테이블 관련 상수들 -->
         <property name="TABLE_BOARDS" value="boards"/>
         <property name="COL_BNO" value="bno"/>
         <property name="COL_TITLE" value="title"/>
@@ -15,13 +15,21 @@
         <property name="COL_VIEW_CNT" value="view_cnt"/>
         <property name="COL_REPLY_CNT" value="reply_cnt"/>
         <property name="COL_ATTACHMENT" value="attachment"/>
-		<!-- USERS -->        
+        
+        <!-- USERS 테이블 관련 상수들 -->
         <property name="TABLE_USERS" value="users"/>
-    	<property name="COL_PWD" value="pwd"/>
-    	<property name="COL_EMAIL" value="email"/>
-    	<property name="COL_POINTS" value="points"/>
+        <!-- BOARDS 테이블의 userid 컬럼 이름은 동일하므로 생략 -->
+        <property name="COL_PWD" value="pwd"/>
+        <property name="COL_EMAIL" value="email"/>
+        <property name="COL_POINTS" value="points"/>
+        
+        <!-- REPLIES 테이블 관련 상수들 -->
+        <!-- userid, bno는 기존에 정의된 프로퍼티를 사용 -->
+        <property name="TABLE_REPLIES" value="replies"/>
+        <property name="COL_RNO" value="rno"/>
+        <property name="COL_RTEXT" value="rtext"/>
+        <property name="COL_REGDATE" value="regdate"/>
     </properties>
-    
     
     <typeAliases>
         <package name="edu.spring.ex02.domain"/>

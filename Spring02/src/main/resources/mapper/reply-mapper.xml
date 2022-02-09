@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.spring.ex02.mapper.ReplyMapper">
+
+    <insert id="insert">
+    INSERT INTO ${TABLE_REPLIES} (${COL_RTEXT}, ${COL_USERID}, ${COL_BNO})
+    VALUES (#{rtext}, #{userid}, #{bno})
+    </insert>
+
+    <select id="select" resultType="Reply">
+    SELECT * FROM ${TABLE_REPLIES}
+    WHERE ${COL_BNO} = #{bno}
+    ORDER BY ${COL_RNO} desc
+    </select>
+    
+    <update id="update">
+    UPDATE ${TABLE_REPLIES}
+    SET ${COL_RTEXT} = #{rtext}, ${COL_REGDATE} = sysdate
+    WHERE ${COL_RNO} = #{rno}
+    </update>
+    
+    <delete id="delete">
+    DELETE FROM ${TABLE_REPLIES} WHERE ${COL_RNO} = #{rno}
+    </delete>
+
+</mapper>

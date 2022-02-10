@@ -12,6 +12,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" 
         	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+        <style>
+        .reply_item {
+            margin: 16px;
+            border: 1px solid gray;
+        }
+        </style>
     </head>
     <body>
         <div class="container-fluid">
@@ -61,7 +67,7 @@
             <div> <%-- 댓글 작성 양식(form) --%>
                 <input type="text" id="rtext" name="rtext" placeholder="댓글 입력"  />
                 <%-- 로그인한 사용자 아이디를 input의 값으로 설정 --%>
-                <input type="text" id="userid" name="userid" value="${signInUserId}" readonly />
+                <input type="text" id="reply_userid" name="userid" value="${signInUserId}" readonly />
                 <button id="btn_create_reply">댓글 작성 완료</button>
             </div>
             
@@ -94,7 +100,7 @@
                     $(respText).each(function () {
                     	var date = new Date(this.regdate); // JavaScript Date 객체 생성
                     	var dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-                    	list += '<div>'
+                    	list += '<div class="reply_item">'
                     		   + '<input type="text" id="rno" name="rno" value="'
                     		   + this.rno
                     		   + '" readonly />'
@@ -106,8 +112,12 @@
                     		   + '" readonly />'
                     		   + '<input type="text" id="regdate" name="regdate" value="'
                     		   + dateStr
-                    		   + '" readonly />'
-                    		   + '</div>';
+                    		   + '" readonly />';
+                    	if (this.userid == '${signInUserId}') { // 댓글 작성자 아이디와 로그인한 사용자 아이디가 같으면
+                    		list += '<button class="reply_update">수정</button>'
+                    			  + '<button class="reply_delete">삭제</button>';
+                    	}
+                    	list += '</div>';
                     });
                     
                     // 완성된 HTML 문자열(list)를 div[id="replies"]의 하위 요소로 추가
@@ -130,7 +140,7 @@
         		}
         		
         		// 댓글 작성자 아이디
-        		var replier = $('#userid').val();
+        		var replier = $('#reply_userid').val();
         		
         		// 댓글 insert 요청을 Ajax 방식으로 보냄.
         		$.ajax({
@@ -152,9 +162,62 @@
         			// 성공 응답(200 response)이 왔을 때 브라우저가 실행할 콜백 함수
         			success: function (resp) {
         				console.log(resp);
+        				$('#rtext').val('');
         				getAllReplies();  // 댓글 목록 업데이트
         			}
         		});
+        	});
+        	
+        	// 수정, 삭제 버튼에 대한 이벤트 리스너는 버튼들이 만들어진 이후에 등록이 되어야 함!
+        	$('#replies').on('click', '.reply_item .reply_update', function () {
+        		// 수정 버튼이 포함된 div 요소에 포함된 rno와 rtext를 찾아서 Ajax PUT 요청을  보냄.
+        		
+        		// $(this): 클래스 속성이 reply_update인 버튼 요소.
+        		var rno = $(this).prevAll('#rno').val();
+        		var rtext = $(this).prevAll('#rtext').val();
+        		
+        		$.ajax({
+        			// 요청 URL
+        			url: '/ex02/replies/' + rno,
+        			// 요청 방식
+        			type: 'PUT',
+        			// 요청 패킷 헤더
+        			headers: {
+        				'Content-Type': 'application/json',
+        				'X-HTTP-Method-Override': 'PUT'
+        			},
+        			// 요청 패킷 데이터
+        			data: JSON.stringify({'rtext': rtext}),
+        			// 성공 응답 콜백 함수
+        			success: function () {
+        				alert(rno + ' 댓글 수정 성공!');
+        				getAllReplies(); // 댓글 목록 업데이트
+        			}
+        		});
+        	});
+        	
+        	// 댓글 삭제 버튼
+        	$('#replies').on('click', '.reply_item .reply_delete', function (event) {
+        		var rno = $(this).prevAll('#rno').val();
+        		var result = confirm(rno + '번 댓글을 정말 삭제할까요?');
+        		if (result) { // 확인(Yes) 버튼을 클릭했을 때
+        			$.ajax({
+        				// 요청 URL
+        				url: '/ex02/replies/' + rno,
+        				// 요청 타입
+        				type: 'DELETE',
+        				// 요청 헤더
+        				headers: {
+        					'Content-Type': 'application/json',
+        					'X-HTTP-Method-Override': 'DELETE'
+        				},
+        				// 성공 응답 콜백 함수
+        				success: function () {
+        					alert(rno + '번 댓글 삭제 성공!');
+        					getAllReplies();
+        				}
+        			});
+        		}
         	});
         	
         });

@@ -23,4 +23,10 @@
     DELETE FROM ${TABLE_REPLIES} WHERE ${COL_RNO} = #{rno}
     </delete>
 
+    <!-- 댓글 번호 rno 댓글의 게시글 번호 찾기 -->
+    <select id="readBno" resultType="java.lang.Integer">
+    SELECT ${COL_BNO} FROM ${TABLE_REPLIES}
+    WHERE ${COL_RNO} = #{rno}
+    </select>
+
 </mapper>

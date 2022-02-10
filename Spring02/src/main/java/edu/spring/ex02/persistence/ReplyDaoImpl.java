@@ -47,4 +47,11 @@ public class ReplyDaoImpl implements ReplyDao {
 		return sqlSession.delete(NAMESPACE + ".delete", rno);
 	}
 	
+	@Override
+	public int readBno(int rno) {
+		log.info("readBno(rno={})", rno);
+		
+		return sqlSession.selectOne(NAMESPACE + ".readBno", rno);
+	}
+	
 }

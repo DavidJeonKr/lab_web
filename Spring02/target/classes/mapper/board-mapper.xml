@@ -67,4 +67,11 @@
     ORDER BY ${COL_BNO} DESC
     </select>
 
+    <!-- 해당 글 번호의 댓글 수자를 증가 또는 감소 -->
+    <update id="updateReplyCnt">
+    UPDATE ${TABLE_BOARDS}
+    SET ${COL_REPLY_CNT} = ${COL_REPLY_CNT} + #{increase}
+    WHERE ${COL_BNO} = #{bno}
+    </update>
+
 </mapper>

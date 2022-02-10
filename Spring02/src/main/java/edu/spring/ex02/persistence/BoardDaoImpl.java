@@ -74,4 +74,15 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectList(BOARD_NAMESPACE + ".selectByKeyword", params);
 	}
 	
+	@Override
+	public int updateReplyCnt(int bno, int increase) {
+		logger.info("updateReplyCnt(bno={}, increase={}) 호출", bno, increase);
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("bno", bno);
+		params.put("increase", increase);
+		
+		return sqlSession.update(BOARD_NAMESPACE + ".updateReplyCnt", params);
+	}
+	
 }
